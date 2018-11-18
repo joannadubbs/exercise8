@@ -1,0 +1,14 @@
+.flex{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+.coordinates-location{
+  border: 1px solid #dddddd;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 2px 2px 5px #cccccc;
+
+}
