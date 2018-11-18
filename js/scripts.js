@@ -1,12 +1,12 @@
 $(function(){
   console.log('scripts loaded');
 
+  var latitude = iss_position.latitude;
+  var longitude = iss_position.longitude;
+
   var url = 'http://api.open-notify.org/iss-now.json';
-  var url2 = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=-34.44076&lon=-58.70521';
-  var url3 = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + data.iss_position.latitude + '&lon' + data.iss_position.longitude;
+  var url2 = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=';
   var html = '';
-  var latitude = 'iss_position.latitude';
-  var longitude = 'iss_position.longitude';
   var data = '';
   var data2 = '';
   var coordinates = [];
@@ -43,7 +43,7 @@ $(function(){
 
   $.ajax({
     type:'GET',
-    url:url3,
+    url:url2 + data.iss_position.latitude + '&lon' + data.iss_position.longitude,
     dataType: 'json',
     async: true,
     data: data,
@@ -55,7 +55,7 @@ $(function(){
         console.log(data2.address.country);
         html += '<div class="coordinates-location flex">';
           html += '<div class="text">';
-          html += '<a href="' + place.url3 + '" target ="_blank">';
+          html += '<a href="' + place.url2 + '" target ="_blank">';
           html += '<h1 class="byline">text here ' + data2.address.country + '</em></h1>';
           html += '</a></div>';
         html += '</div>';
