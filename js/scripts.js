@@ -9,7 +9,7 @@ $(function(){
   var data = '';
   var data2 = '';
   var coordinates = [];
-  var urlArray = [];
+  var country = [];
 
 
 // Get coordinates to show up
@@ -42,20 +42,20 @@ $(function(){
 
   $.ajax({
     type:'GET',
-    url:url,
+    url:url2,
     dataType: 'json',
     async: true,
     data: data,
     success: function(data2){
-    console.log(data2.display_name);
-    location = data2.display_name;
+    console.log(data2.address.country);
+    place = data2.country;
 
-    (function(location){
-        console.log(data2.display_name);
+    (function(place){
+        console.log(data2.address.country);
         html += '<div class="coordinates-location flex">';
           html += '<div class="text">';
-          html += '<a href="' + location.url2 + '" target ="_blank">';
-          html += '<h1 class="byline">text here ' + data2.display_name + '</em></h1>';
+          html += '<a href="' + place.url2 + '" target ="_blank">';
+          html += '<h1 class="byline">text here ' + data2.address.country + '</em></h1>';
           html += '</a></div>';
         html += '</div>';
       });
