@@ -1,11 +1,7 @@
 $(function(){
   console.log('scripts loaded');
 
-  var latitude = iss_position.latitude;
-  var longitude = iss_position.longitude;
-
   var url = 'http://api.open-notify.org/iss-now.json';
-  var url2 = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=';
   var html = '';
   var data = '';
   var data2 = '';
@@ -41,9 +37,14 @@ $(function(){
 
   }); //closes coordinates ajax request
 
+  var latitude = url.iss_position.latitude;
+  var longitude = url.iss_position.longitude;
+
+  var url2 = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + latitude + '&lon' + longitude;
+
   $.ajax({
     type:'GET',
-    url:url2 + data.iss_position.latitude + '&lon' + data.iss_position.longitude,
+    url:url2 + latitude + '&lon' + longitude,
     dataType: 'json',
     async: true,
     data: data,
