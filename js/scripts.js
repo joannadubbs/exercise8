@@ -1,15 +1,18 @@
 $(function(){
   console.log('scripts loaded');
 
+  var myVar = setInterval(myTimer, 5000);
+
+  function myTimer() { //refresh every 5 seconds
+
   var url = 'http://api.open-notify.org/iss-now.json';
   var url2 = '';
   var html = '';
   var data = '';
-  var data2 = '';
+  var data2 = [];
   var coordinates = [];
   var country = [];
   var oceanmessage = 'The space station is currently over an ocean.'
-
 
 // Get coordinates to show up
 
@@ -27,12 +30,7 @@ $(function(){
     url2 = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + coordinates.latitude + '&lon=' + coordinates.longitude;
     console.log(url2);
 
-    html += coordinates.latitude;
-
-
-      if (place = 'undefined'){
-        $('#results').html(oceanmessage);
-      }
+    //html += 'The space station is currently at ' + coordinates.latitude;
 
       $.ajax({ //on success call second ajax
         type:'GET',
@@ -48,33 +46,26 @@ $(function(){
         console.log(data2);
         console.log(place.country)
 
-        (function(place){
-            console.log(data2.address.country);
-            html += '<div class="coordinates-location flex">';
-              html += '<div class="text">';
-              html += '<h2 class="place-header">text here ' + place.country + '</h2>';
-              html += '</div>';
-            html += '</div>';
-          });
+        //if (place.country = undefined){
+        if (url = data2.error){
+          html += '<p> The space station is currently over the ocean. </p>';
+       } else{
+        html += '<p> The space station is currently in ' + place.state +  ', ' + place.country + '</p>';
+       }
 
-
+        $('#results').html(html);
 
         } //success
 
       }); //closes second ajax request
 
-      $('#results').html(html);
-      
+
     } //success of first ajax call
 
     //Declare URL for second ajax call
 
   }); //closes coordinates ajax request
 
-
-
-  //Get function to refresh every 5 seconds
-
-  //display error message
+  }
 
 });
