@@ -47,7 +47,7 @@ $(function(){
         console.log(place.country)
 
         //if (place.country = undefined){
-        if (url = data2.error){
+        if (data2.error){
           html += '<p> The space station is currently over the ocean. </p>';
        } else{
         html += '<p> The space station is currently in ' + place.state +  ', ' + place.country + '</p>';
@@ -55,7 +55,7 @@ $(function(){
 
         $('#results').html(html);
 
-        } //success
+      } //success of second ajax request
 
       }); //closes second ajax request
 
@@ -64,8 +64,8 @@ $(function(){
 
     //Declare URL for second ajax call
 
-  }); //closes coordinates ajax request
+  }); //closes first ajax request
 
-  }
+} // timer
 
 });
