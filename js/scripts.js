@@ -8,10 +8,7 @@ $(function(){
   var data2 = '';
   var coordinates = [];
   var country = [];
-  //var position = {
-  //  latitude: data.iss_position;
-    //longitude: ;
-//  }
+  var oceanmessage = 'The space station is currently over an ocean.'
 
 
 // Get coordinates to show up
@@ -30,44 +27,44 @@ $(function(){
     url2 = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + coordinates.latitude + '&lon=' + coordinates.longitude;
     console.log(url2);
 
-    (function(coordinates){
-        console.log(data.iss_position);
-        html += '<div class="coordinates-location flex">';
-          html += '<div class="text">';
-          html += '<a href="' + coordinates.url + '" target ="_blank">';
-          html += '<h1 class="coordinates-header">The space station is currently at.. ' + data.iss_position + '</em></h1>';
-          html += '</a></div>';
-        html += '</div>';
-      });
+    html += coordinates.latitude;
 
-      $('#results').html(html);
+
+      if (place = 'undefined'){
+        $('#results').html(oceanmessage);
+      }
 
       $.ajax({ //on success call second ajax
         type:'GET',
         url:url2,
         dataType: 'json',
         async: true,
-        data: data,
+        data: data2,
         success: function(data2){
-        place = data2.country;
-        console.log(data2.address.country);
+        console.log(url2);
+        console.log(data2.address);
+        place = data2.address;
+        console.log(place);
+        console.log(data2);
+        console.log(place.country)
 
         (function(place){
             console.log(data2.address.country);
             html += '<div class="coordinates-location flex">';
               html += '<div class="text">';
-              html += '<a href="' + place.url2 + '" target ="_blank">';
-              html += '<h2 class="place-header">text here ' + data2.address.country + '</em></h2>';
-              html += '</a></div>';
+              html += '<h2 class="place-header">text here ' + place.country + '</h2>';
+              html += '</div>';
             html += '</div>';
           });
 
-          $('#results').html(html);
+
 
         } //success
 
-      }); //closes ajax request
+      }); //closes second ajax request
 
+      $('#results').html(html);
+      
     } //success of first ajax call
 
     //Declare URL for second ajax call
